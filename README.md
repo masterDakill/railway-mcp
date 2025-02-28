@@ -23,24 +23,20 @@ This MCP server provides tools for managing Railway projects, services, deployme
 - An active Railway account
 - A Railway API token (create one at https://railway.app/account/tokens)
 
-### Local Installation
+### Quick Start
+
+The easiest way to use the Railway MCP server is through npx:
 
 ```bash
-# Clone the repository
-git clone <repository_url>
-cd railway-mcp
-
-# Install dependencies
-npm install
-
-# Build the server
-npm run build
+npx @jasontanswe/railway-mcp
 ```
 
 ### Global Installation
 
+If you prefer to install globally:
+
 ```bash
-npm install -g railway-mcp
+npm install -g @jasontanswe/railway-mcp
 ```
 
 ## Usage with Claude for Desktop
@@ -57,9 +53,10 @@ This MCP server is designed to work with LLM applications like Claude for Deskto
 {
   "mcpServers": {
     "railway": {
-      "command": "railway-mcp",
+      "command": "npx",
+      "args": ["-y", "@jasontanswe/railway-mcp"],
       "env": {
-        "RAILWAY_API_TOKEN": "your-railway-api-token-here",
+        "RAILWAY_API_TOKEN": "your-railway-api-token-here"
       }
     }
   }
@@ -198,7 +195,8 @@ To enable debug logging for the Railway MCP server, add the `DEBUG` environment 
 {
   "mcpServers": {
     "railway": {
-      "command": "railway-mcp",
+      "command": "npx",
+      "args": ["-y", "@jasontanswe/railway-mcp"],
       "env": {
         "RAILWAY_API_TOKEN": "your-railway-api-token-here",
         "DEBUG": "railway:*"  // All debug logs

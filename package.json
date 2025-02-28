@@ -1,27 +1,51 @@
 {
-  "name": "railway-mcp",
+  "name": "@jasontanswe/railway-mcp",
   "version": "1.0.0",
   "main": "build/index.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
     "postbuild": "chmod +x build/index.js",
-    "start": "node build/index.js"
+    "start": "node build/index.js",
+    "prepublishOnly": "npm run build"
   },
   "bin": {
-    "railway-mcp": "./build/index.js"
+    "railway-mcp": "build/index.js"
   },
-  "files": ["build"],
-  "keywords": ["railway", "mcp", "api", "cli"],
-  "author": "",
+  "files": [
+    "build"
+  ],
+  "keywords": [
+    "railway",
+    "mcp",
+    "api",
+    "cli",
+    "model-context-protocol",
+    "railway-app"
+  ],
+  "author": "Jason Tan",
   "license": "MIT",
   "description": "Model Context Protocol server for Railway.app integration",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasontan/railway-mcp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jasontan/railway-mcp/issues"
+  },
+  "homepage": "https://github.com/jasontan/railway-mcp#readme",
+  "publishConfig": {
+    "access": "public"
+  },
   "dependencies": {
     "@modelcontextprotocol/sdk": "^1.6.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
     "@types/node": "^20.10.0",
+    "semantic-release": "^22.0.0",
     "typescript": "^5.3.0"
   }
 }
