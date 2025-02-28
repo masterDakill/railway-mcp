@@ -39,10 +39,14 @@ export class RailwayApiClient {
       throw new Error('API token not set. Please configure the API token first.');
     }
 
-    // Debug logging
-    console.error('GraphQL Request:');
-    console.error('Query:', query);
-    console.error('Variables:', JSON.stringify(variables, null, 2));
+    const debug = process.env.DEBUG;
+    const isDebug = debug === 'railway:*' || debug?.includes('railway:api');
+
+    if (isDebug) {
+      console.error('GraphQL Request:');
+      console.error('Query:', query);
+      console.error('Variables:', JSON.stringify(variables, null, 2));
+    }
 
     const response = await fetch(this.apiUrl, {
       method: 'POST',
@@ -58,8 +62,9 @@ export class RailwayApiClient {
 
     const result = await response.json() as GraphQLResponse<T>;
 
-    // Debug logging
-    console.error('GraphQL Response:', JSON.stringify(result, null, 2));
+    if (isDebug) {
+      console.error('GraphQL Response:', JSON.stringify(result, null, 2));
+    }
 
     if (result.errors && result.errors.length > 0) {
       throw new Error(result.errors[0].message);
@@ -151,6 +156,7 @@ export class RailwayApiClient {
               node {
                 id
                 name
+              }
               }
             }
           }

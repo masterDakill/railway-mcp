@@ -1,5 +1,8 @@
 # Railway MCP Server
 
+| Please Note: This is under development and not all features are available yet. 🚧 |
+| ----------------------------------------------------------------------------- |
+
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for integrating with the [Railway.app](https://railway.app) platform.
 
 This MCP server provides tools for managing Railway projects, services, deployments, and variables through LLM applications that support MCP, such as Claude for Desktop.
@@ -45,7 +48,7 @@ npm install -g railway-mcp
 This MCP server is designed to work with LLM applications like Claude for Desktop.
 
 1. Create or edit your Claude for Desktop config file:
-   - macOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
+   - macOS: `~/Library/Application\ Support/Claude/claude_desktop_config.json`
    - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
 
 2. Add the railway-mcp server to your configuration with your API token:
@@ -56,7 +59,7 @@ This MCP server is designed to work with LLM applications like Claude for Deskto
     "railway": {
       "command": "railway-mcp",
       "env": {
-        "RAILWAY_API_TOKEN": "your-railway-api-token-here"
+        "RAILWAY_API_TOKEN": "your-railway-api-token-here",
       }
     }
   }
@@ -144,15 +147,143 @@ If you encounter issues:
    - Check Railway's status page for any service disruptions
    - Railway API has rate limits - avoid making too many requests in a short period
 
-## Development
+## Contributing
 
-If you want to contribute to the development of this MCP server:
+We welcome contributions from the community! Here's how you can help:
 
-1. Clone the repository
-2. Make your changes
-3. Run `npm run build` to compile
-4. Test your changes locally
-5. Submit a pull request
+1. **Fork & Clone**
+   ```bash
+   git clone https://github.com/your-username/railway-mcp.git
+   cd railway-mcp
+   npm install
+   ```
+
+2. **Make Changes**
+   - Create a new branch: `git checkout -b feature/your-feature`
+   - Make your changes
+   - Write or update tests if necessary
+   - Follow the existing code style
+   - Commit your changes: `git commit -m "Add your feature"`
+
+3. **Test Your Changes**
+   ```bash
+   npm run build
+   npm start
+   ```
+
+4. **Submit a Pull Request**
+   - Push to your fork: `git push origin feature/your-feature`
+   - Open a pull request from your fork to our main branch
+   - Describe your changes and why they're needed
+   - Link any related issues
+
+### Development Guidelines
+
+- Use TypeScript for all new code
+- Follow the existing project structure
+- Keep GraphQL queries in the `api-client.ts` file
+- Add new tool implementations in the `tools/` directory
+
+## Debugging
+
+To enable debug logging for the Railway MCP server, add the `DEBUG` environment variable to your Claude Desktop configuration file:
+
+1. Open your Claude Desktop config file:
+   - macOS: `~/Library/Application\ Support/Claude/claude_desktop_config.json`
+   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
+
+2. Add the `DEBUG` environment variable to your railway-mcp configuration. You can choose one of these debug options:
+
+```json
+{
+  "mcpServers": {
+    "railway": {
+      "command": "railway-mcp",
+      "env": {
+        "RAILWAY_API_TOKEN": "your-railway-api-token-here",
+        "DEBUG": "railway:*"  // All debug logs
+      }
+    }
+  }
+}
+```
+
+Available debug options:
+- `railway:*` - Enable all debug logs
+- `railway:api` - Only API request/response logs | Under Development 🚧
+- `railway:tools` - Only tool execution logs | Under Development 🚧
+
+3. Restart your MCP Client (i.e Claude for Desktop)
+
+### API Debug Logs
+
+When `DEBUG=railway:api` is set, the server will log all GraphQL operations:
+
+1. **Request Details**
+   ```
+   GraphQL Request:
+   Query: [the actual GraphQL query]
+   Variables: [the variables being passed]
+   ```
+
+2. **Response Details**
+   ```
+   GraphQL Response: [the full response from Railway API]
+   ```
+
+These logs are invaluable for:
+- Debugging query structure issues
+- Verifying variable passing
+- Understanding API responses
+- Troubleshooting "Problem processing request" errors
+
+### Common Issues
+
+1. **"Problem processing request"**
+   - Enable API debug logs with `DEBUG=railway:api`
+   - Check the query structure in the logs
+   - Verify variable names match the query parameters
+   - Ensure all required variables are provided
+
+2. **Authentication Issues**
+   - Check if the API token is set correctly
+   - Look for "Authorization" header in request logs
+   - Verify token permissions in Railway dashboard
+
+3. **WebSocket Connection Issues**
+   - Enable WebSocket debug logs with `DEBUG=railway:ws`
+   - Check connection status in logs
+   - Verify subscription query format
+   - Ensure proper connection initialization
+
+### Development Tips
+
+1. When implementing new features:
+   - Test queries in [Railway's GraphQL playground](https://railway.com/graphiql) first, you will need to set your Authorization header to your Railway API token as done here:
+   ```
+   {
+    "Authorization": "Bearer <your-railway-api-token>"
+   }
+   ```
+   - Enable debug logs to verify query execution
+   - Add appropriate error handling
+   - Update type definitions as needed
+
+2. For local development, you can run the server with debug logs and use your MCP client to test the features. You'll need to update your Claude Desktop config file to use the local server once built:
+  ```json
+  {
+    "mcpServers": {
+      "railway": {
+        "command": "node",
+        "args": ["/ABSOLUTE/PATH/TO/railway-mcp/build/index.js"],
+        "env": {
+          "RAILWAY_API_TOKEN": "your-railway-api-token-here",
+          "DEBUG": "railway:*"  // All debug logs
+        }
+      }
+    }
+  }
+  ```
 
 ## License
 
