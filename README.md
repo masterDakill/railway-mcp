@@ -41,6 +41,8 @@ npm install -g @jasontanswe/railway-mcp
 
 ## Usage with Claude for Desktop
 
+https://github.com/user-attachments/assets/1e72fb41-030a-4eab-ad37-4ceab9d2606f
+
 This MCP server is designed to work with LLM applications like Claude for Desktop.
 
 1. Create or edit your Claude for Desktop config file:
