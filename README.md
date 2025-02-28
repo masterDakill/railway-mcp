@@ -50,8 +50,23 @@ This MCP server is designed to work with LLM applications like Claude for Deskto
 2. Add the railway-mcp server to your configuration with your API token:
 
 ```json
+   "railway": {
+      "command": "npx",
+      "args": ["-y", "@jasontanswe/railway-mcp"],
+      "env": {
+         "RAILWAY_API_TOKEN": "your-railway-api-token-here"
+      }
+   }
+```
+
+When you have multiple MCP servers, your config file might look like this:
+
+```json
 {
   "mcpServers": {
+    // ... All of your existing MCP servers ...
+
+    // Add the railway-mcp server to your configuration with your API token
     "railway": {
       "command": "npx",
       "args": ["-y", "@jasontanswe/railway-mcp"],
