@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <strong>Let Cursor & Windsurf manage your Supabase and run SQL queries. Autonomously. In a safe way.</strong>
+  <strong>Let Claude and Cursor manage your Railway infrastructure through natural language. Deploy, configure, and monitor - autonomously and safely.</strong>
 </p>
 
 | Please Note: This is under development and not all features are available yet. 🚧 |
