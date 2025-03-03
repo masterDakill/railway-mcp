@@ -68,21 +68,15 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for in
 
 ## Installation
 
-### Installing via Smithery
+### Installing Locally
 
-To install railway-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@jason-tan-swe/railway-mcp):
-
-```bash
-npx -y @smithery/cli install @jason-tan-swe/railway-mcp --client claude
-```
-
-### Prerequisites
+#### Prerequisites
 
 - Node.js 18+ (for built-in fetch API support)
 - An active Railway account
 - A Railway API token (create one at https://railway.app/account/tokens)
 
-### Quick Start
+#### Quick Start
 
 This MCP server is designed to work with MCP Clients like:
 - Claude for Desktop | ✅ Battle-Tested
@@ -138,6 +132,14 @@ Please list all my Railway projects
 
 ```
 Please configure the Railway API with my token: {YOUR_API_TOKEN_HERE}
+```
+
+### Installing via Smithery
+
+To install railway-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@jason-tan-swe/railway-mcp):
+
+```bash
+npx -y @smithery/cli install @jason-tan-swe/railway-mcp --client claude
 ```
 
 ## Available Tools
