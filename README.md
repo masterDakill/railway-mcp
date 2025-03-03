@@ -14,6 +14,8 @@
   </picture>
 </p>
 
+[![smithery badge](https://smithery.ai/badge/@jason-tan-swe/railway-mcp)](https://smithery.ai/server/@jason-tan-swe/railway-mcp)
+
 <p align="center">
   <strong>Let Claude and Cursor manage your Railway infrastructure through natural language. Deploy, configure, and monitor - autonomously and safely.</strong>
 </p>
@@ -60,6 +62,14 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for in
 - ❌ More Robust checks for deployed services
 
 ## Installation
+
+### Installing via Smithery
+
+To install railway-mcp for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@jason-tan-swe/railway-mcp):
+
+```bash
+npx -y @smithery/cli install @jason-tan-swe/railway-mcp --client claude
+```
 
 ### Prerequisites
 
