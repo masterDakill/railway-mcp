@@ -14,18 +14,23 @@
   </picture>
 </p>
 
-[![smithery badge](https://smithery.ai/badge/@jason-tan-swe/railway-mcp)](https://smithery.ai/server/@jason-tan-swe/railway-mcp)
-
 <p align="center">
-  <strong>Let Claude and Cursor manage your Railway infrastructure through natural language. Deploy, configure, and monitor - autonomously and safely.</strong>
+  <strong>
+  Let Claude and other MCP clients manage your Railway.app infrastructure. Deploy services, manage variables, and monitor deployments - all through natural language.
+  </strong>
+</p>
+<p align="center">
+  <table align="center">
+    <th align="center">
+       Please Note: This is under development and not all features are available yet. 🚧 
+    </th>
+  </table>
 </p>
 
-| Please Note: This is under development and not all features are available yet. 🚧 |
-| ----------------------------------------------------------------------------- |
-
-**Let Claude and other MCP clients manage your Railway.app infrastructure. Deploy services, manage variables, and monitor deployments - all through natural language.**
 
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for integrating with the [Railway.app](https://railway.app) platform.
+
+[![smithery badge](https://smithery.ai/badge/@jason-tan-swe/railway-mcp)](https://smithery.ai/server/@jason-tan-swe/railway-mcp)
 
 ## Table of Contents
 
@@ -36,7 +41,7 @@ A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for in
   <a href="#example-workflows">Example Workflows</a> •
   <a href="#security-considerations">Security</a> •
   <a href="#troubleshooting">Troubleshooting</a> •
-  <a href="#contributing">Contributing</a> •
+  <a href="#contributing">Contributing</a>
 </p>
 
 ## Features
@@ -135,8 +140,10 @@ Please list all my Railway projects
 Please configure the Railway API with my token: {YOUR_API_TOKEN_HERE}
 ```
 
+## Available Tools
+
 <details>
-<summary><h2> Available Tools</h2></summary>
+<summary>View All</summary>
 
 ### Authentication
 - `configure` - Set your Railway API token (only needed if not provided in environment variables)
