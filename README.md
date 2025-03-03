@@ -1,19 +1,63 @@
 # Railway MCP Server
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://avatars.githubusercontent.com/u/66716858?s=200&v=4" />
+    <source media="(prefers-color-scheme: light)" srcset="https://avatars.githubusercontent.com/u/66716858?s=200&v=4" />
+    <img alt="Railway" src="https://avatars.githubusercontent.com/u/66716858?s=200&v=4" height="40" />
+  </picture>
+  &nbsp;&nbsp;
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github.com/user-attachments/assets/38db1bcd-50df-4a49-a106-1b5afd924cb2" />
+    <source media="(prefers-color-scheme: light)" srcset="https://github.com/user-attachments/assets/82603097-07c9-42bb-9cbc-fb8f03560926" />
+    <img alt="MCP" src="https://github.com/user-attachments/assets/82603097-07c9-42bb-9cbc-fb8f03560926" height="40" />
+  </picture>
+</p>
+
+<p align="center">
+  <strong>Let Cursor & Windsurf manage your Supabase and run SQL queries. Autonomously. In a safe way.</strong>
+</p>
+
 | Please Note: This is under development and not all features are available yet. 🚧 |
 | ----------------------------------------------------------------------------- |
 
+**Let Claude and other MCP clients manage your Railway.app infrastructure. Deploy services, manage variables, and monitor deployments - all through natural language.**
+
 A [Model Context Protocol (MCP)](https://modelcontextprotocol.io/) server for integrating with the [Railway.app](https://railway.app) platform.
 
-This MCP server provides tools for managing Railway projects, services, deployments, and variables through LLM applications that support MCP, such as Claude for Desktop.
+## Table of Contents
+
+<p align="center">
+  <a href="#features">Features</a> •
+  <a href="#installation">Installation</a> •
+  <a href="#available-tools">Available Tools</a> •
+  <a href="#example-workflows">Example Workflows</a> •
+  <a href="#security-considerations">Security</a> •
+  <a href="#troubleshooting">Troubleshooting</a> •
+  <a href="#contributing">Contributing</a> •
+</p>
 
 ## Features
 
+
+| Status | Meaning |
+|--------|---------|
+| ✅ | Complete |
+| 🚧🔨⏳ | Being Built or Needs Testing |
+| ❌ | Not Built at the moment |
+
 - ✅ Authentication with Railway API tokens
 - ✅ Project management (list, info, delete)
-- ✅ Service management (create from GitHub repo or Docker image, list)
 - ✅ Deployment management (list, restart)
-- ✅ Variable management (list, create/update, delete)
+- 🚧🔨⏳ Service management (create from GitHub repo or Docker image, list)
+- 🚧🔨⏳ Variable management (list, create/update, delete)
+- ❌ Service Network management
+- ❌ Volume management
+- ❌ Full support for all templates
+   - ❌ Database template support
+   - Automatic database and networking workflows
+- ❌ Most commonly used workflows
+- ❌ More Robust checks for deployed services
 
 ## Installation
 
@@ -25,24 +69,12 @@ This MCP server provides tools for managing Railway projects, services, deployme
 
 ### Quick Start
 
-The easiest way to use the Railway MCP server is through npx:
-
-```bash
-npx @jasontanswe/railway-mcp
-```
-
-### Global Installation
-
-If you prefer to install globally:
-
-```bash
-npm install -g @jasontanswe/railway-mcp
-```
-
-## Usage with Claude for Desktop
-https://github.com/user-attachments/assets/9d075203-77f2-4425-9970-30dd7e377ec3
-
-This MCP server is designed to work with LLM applications like Claude for Desktop.
+This MCP server is designed to work with MCP Clients like:
+- Claude for Desktop | ✅ Battle-Tested
+- Cline | 🚧🔨⏳ Needs Testing
+- Cursor | 🚧🔨⏳Needs Testing
+- Windsurf | 🚧🔨⏳ Needs Testing
+- Other MCP Clients | 🚧🔨⏳ Needs Testing
 
 1. Create or edit your Claude for Desktop config file:
    - macOS: `~/Library/Application\ Support/Claude/claude_desktop_config.json`
@@ -93,7 +125,8 @@ Please list all my Railway projects
 Please configure the Railway API with my token: {YOUR_API_TOKEN_HERE}
 ```
 
-## Available Tools
+<details>
+<summary><h2> Available Tools</h2></summary>
 
 ### Authentication
 - `configure` - Set your Railway API token (only needed if not provided in environment variables)
@@ -101,21 +134,36 @@ Please configure the Railway API with my token: {YOUR_API_TOKEN_HERE}
 ### Projects
 - `project-list` - List all projects in your account
 - `project-info` - Get detailed information about a specific project
-- `project-delete` - Delete a project (requires confirmation)
+- `project-create` - Create a new project with optional team ID
+- `project-delete` - Delete a project
+- `project-environments` - List all environments in a project
 
 ### Services
+- `service-list` - List all services in a specific project
+- `service-info` - Get detailed information about a specific service
 - `service-create-from-repo` - Create a new service from a GitHub repository
 - `service-create-from-image` - Create a new service from a Docker image
-- `service-list` - List all services in a project
+- `service-delete` - Delete a service from a project
+- `service-restart` - Restart a service in a specific environment
+- `service-update` - Update service configuration (build command, start command, etc.) | 🚧 Needs Testing
 
 ### Deployments
 - `deployment-list` - List recent deployments for a service
-- `deployment-restart` - Restart a specific deployment
+- `deployment-trigger` - Trigger a new deployment for a service
+- `deployment-logs` - Get logs for a specific deployment
+- `deployment-health-check` - Check the health/status of a deployment
 
 ### Variables
 - `variable-list` - List variables for a service or environment
-- `variable-upsert` - Create or update a variable
+- `variable-set` - Create or update a variable
 - `variable-delete` - Delete a variable
+- `variable-bulk-set` - Bulk update variables for a service | 🚧 Needs Testing
+- `variable-copy` - Copy variables between environments | 🚧 Needs Testing
+
+### Databases
+- `database-list-types` - List all available database types that can be deployed
+- `database-deploy` - Deploy a new database service
+</details>
 
 ## Example Workflows
 
@@ -162,143 +210,4 @@ If you encounter issues:
 
 ## Contributing
 
-We welcome contributions from the community! Here's how you can help:
-
-1. **Fork & Clone**
-   ```bash
-   git clone https://github.com/your-username/railway-mcp.git
-   cd railway-mcp
-   npm install
-   ```
-
-2. **Make Changes**
-   - Create a new branch: `git checkout -b feature/your-feature`
-   - Make your changes
-   - Write or update tests if necessary
-   - Follow the existing code style
-   - Commit your changes: `git commit -m "Add your feature"`
-
-3. **Test Your Changes**
-   ```bash
-   npm run build
-   npm start
-   ```
-
-4. **Submit a Pull Request**
-   - Push to your fork: `git push origin feature/your-feature`
-   - Open a pull request from your fork to our main branch
-   - Describe your changes and why they're needed
-   - Link any related issues
-
-### Development Guidelines
-
-- Use TypeScript for all new code
-- Follow the existing project structure
-- Keep GraphQL queries in the `api-client.ts` file
-- Add new tool implementations in the `tools/` directory
-
-## Debugging
-
-To enable debug logging for the Railway MCP server, add the `DEBUG` environment variable to your Claude Desktop configuration file:
-
-1. Open your Claude Desktop config file:
-   - macOS: `~/Library/Application\ Support/Claude/claude_desktop_config.json`
-   - Windows: `%APPDATA%\Claude\claude_desktop_config.json`
-
-2. Add the `DEBUG` environment variable to your railway-mcp configuration. You can choose one of these debug options:
-
-```json
-{
-  "mcpServers": {
-    "railway": {
-      "command": "npx",
-      "args": ["-y", "@jasontanswe/railway-mcp"],
-      "env": {
-        "RAILWAY_API_TOKEN": "your-railway-api-token-here",
-        "DEBUG": "railway:*"  // All debug logs
-      }
-    }
-  }
-}
-```
-
-Available debug options:
-- `railway:*` - Enable all debug logs
-- `railway:api` - Only API request/response logs | Under Development 🚧
-- `railway:tools` - Only tool execution logs | Under Development 🚧
-
-3. Restart your MCP Client (i.e Claude for Desktop)
-
-### API Debug Logs
-
-When `DEBUG=railway:api` is set, the server will log all GraphQL operations:
-
-1. **Request Details**
-   ```
-   GraphQL Request:
-   Query: [the actual GraphQL query]
-   Variables: [the variables being passed]
-   ```
-
-2. **Response Details**
-   ```
-   GraphQL Response: [the full response from Railway API]
-   ```
-
-These logs are invaluable for:
-- Debugging query structure issues
-- Verifying variable passing
-- Understanding API responses
-- Troubleshooting "Problem processing request" errors
-
-### Common Issues
-
-1. **"Problem processing request"**
-   - Enable API debug logs with `DEBUG=railway:api`
-   - Check the query structure in the logs
-   - Verify variable names match the query parameters
-   - Ensure all required variables are provided
-
-2. **Authentication Issues**
-   - Check if the API token is set correctly
-   - Look for "Authorization" header in request logs
-   - Verify token permissions in Railway dashboard
-
-3. **WebSocket Connection Issues**
-   - Enable WebSocket debug logs with `DEBUG=railway:ws`
-   - Check connection status in logs
-   - Verify subscription query format
-   - Ensure proper connection initialization
-
-### Development Tips
-
-1. When implementing new features:
-   - Test queries in [Railway's GraphQL playground](https://railway.com/graphiql) first, you will need to set your Authorization header to your Railway API token as done here:
-   ```
-   {
-    "Authorization": "Bearer <your-railway-api-token>"
-   }
-   ```
-   - Enable debug logs to verify query execution
-   - Add appropriate error handling
-   - Update type definitions as needed
-
-2. For local development, you can run the server with debug logs and use your MCP client to test the features. You'll need to update your Claude Desktop config file to use the local server once built:
-  ```json
-  {
-    "mcpServers": {
-      "railway": {
-        "command": "node",
-        "args": ["/ABSOLUTE/PATH/TO/railway-mcp/build/index.js"],
-        "env": {
-          "RAILWAY_API_TOKEN": "your-railway-api-token-here",
-          "DEBUG": "railway:*"  // All debug logs
-        }
-      }
-    }
-  }
-  ```
-
-## License
-
-MIT
+We welcome contributions from the community! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details on how to get started, development guidelines, and debugging information.
