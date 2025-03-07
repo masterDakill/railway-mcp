@@ -27,7 +27,7 @@
   ],
   "author": "Jason Tan",
   "license": "MIT",
-  "description": "Model Context Protocol server for Railway.app integration",
+  "description": "Model Context Protocol server for Railway.app - Enables AI agents to manage Railway infrastructure through natural language",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jason-tan-swe/railway-mcp.git"
