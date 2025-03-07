@@ -12,6 +12,13 @@
 
 * tcpProxies, volume, domain tools, also adds database workflow ([#7](https://github.com/jason-tan-swe/railway-mcp/issues/7)) ([f8ceadb](https://github.com/jason-tan-swe/railway-mcp/commit/f8ceadb83510842a548159ac3bde06709bc86bb4))
 
+# [1.1.0](https://github.com/jason-tan-swe/railway-mcp/compare/v1.0.2...v1.1.0) (2025-03-07)
+
+
+### Features
+
+* tcpProxies, volume, domain tools, also adds database workflow ([#7](https://github.com/jason-tan-swe/railway-mcp/issues/7)) ([f8ceadb](https://github.com/jason-tan-swe/railway-mcp/commit/f8ceadb83510842a548159ac3bde06709bc86bb4))
+
 ## [1.0.2](https://github.com/jason-tan-swe/railway-mcp/compare/v1.0.1...v1.0.2) (2025-03-03)
 
 
