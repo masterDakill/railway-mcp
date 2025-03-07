@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/jason-tan-swe/railway-mcp/compare/v1.2.0...v1.2.1) (2025-03-07)
+
+
+### Bug Fixes
+
+* suggest working cloud region ([bf5c6e0](https://github.com/jason-tan-swe/railway-mcp/commit/bf5c6e06660712f0c032beb6e1d93c6ffa060355))
+
 # [1.2.0](https://github.com/jason-tan-swe/railway-mcp/compare/v1.1.0...v1.2.0) (2025-03-07)
 
 
