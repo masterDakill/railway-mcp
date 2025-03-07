@@ -61,7 +61,7 @@ export const databaseTools = [
         "Type of database to deploy (e.g., postgresql, mongodb, redis). Use service_create_from_image for other types."
       ),
       region: RegionCodeSchema.describe(
-        "Region where the database should be deployed"
+        "Region where the database should be deployed, try us-west1 before all other regions"
       ),
       environmentId: z.string().describe(
         "Environment ID where the database will be deployed (usually obtained from project_info)"

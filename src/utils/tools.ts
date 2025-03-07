@@ -57,7 +57,6 @@ export const formatToolDescription = ({
       '⚠️ Not for:',
       ...notFor.map(n => `  × ${n}`)
     ].join('\n'),
-    '\n\n\n',
     
     // Prerequisites section
     relations?.prerequisites?.length! > 0 &&
