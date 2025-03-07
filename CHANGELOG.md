@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/jason-tan-swe/railway-mcp/compare/v1.1.0...v1.2.0) (2025-03-07)
+
+
+### Features
+
+* enhance package description and trigger release for TCP proxies, volumes, and domain tools ([ac18d88](https://github.com/jason-tan-swe/railway-mcp/commit/ac18d885f1283a035a117558151c905d82be7368))
+
 # [1.1.0](https://github.com/jason-tan-swe/railway-mcp/compare/v1.0.2...v1.1.0) (2025-03-07)
 
 
