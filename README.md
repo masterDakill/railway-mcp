@@ -96,7 +96,7 @@ npx -y @smithery/cli install @jason-tan-swe/railway-mcp --client claude
 
 **Cursor**
 ```
-npx -y @smithery/cli install @jason-tan-swe/railway-mcp --client cursor
+npx -y @smithery/cli@latest run @jason-tan-swe/railway-mcp --config "{\"railwayApiToken\":\"token\"}"
 ```
 
 
