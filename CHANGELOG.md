@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/jason-tan-swe/railway-mcp/compare/v1.2.1...v1.3.0) (2025-06-07)
+
+
+### Features
+
+* Support Templates ([#11](https://github.com/jason-tan-swe/railway-mcp/issues/11)) ([2fa7483](https://github.com/jason-tan-swe/railway-mcp/commit/2fa74834fd53f83526450608cff488ffd922e589))
+
 ## [1.2.1](https://github.com/jason-tan-swe/railway-mcp/compare/v1.2.0...v1.2.1) (2025-03-07)
 
 
