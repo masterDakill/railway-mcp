@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import express from "express";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { railwayClient } from "@/api/api-client.js";
@@ -24,15 +25,23 @@ async function main() {
   await railwayClient.initialize();
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  
+
   const hasToken = railwayClient.getToken() !== null;
-  console.error(hasToken 
-    ? "Railway MCP server running with API token" + (cliToken ? " from command line" : " from environment")
-    : "Railway MCP server running without API token - use 'configure' tool to set token"
+  console.error(hasToken
+    ? "✅ Railway MCP server running with API token" + (cliToken ? " from command line" : " from environment")
+    : "⚠️ Railway MCP server running without API token - use 'configure' tool to set token"
   );
+
+  // 🟣 Railway-friendly HTTP server
+  const app = express();
+  const port = process.env.PORT || 8080;
+  app.get("/", (req, res) => res.send("✅ MCP server is running (Stdio only)"));
+  app.listen(port, () => {
+    console.log(`✅ HTTP server listening on port ${port}`);
+  });
 }
 
 main().catch((error) => {
-  console.error("Fatal error in main():", error);
+  console.error("❌ Fatal error in main():", error);
   process.exit(1);
 });
