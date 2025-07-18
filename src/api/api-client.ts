@@ -7,6 +7,11 @@ import { TcpProxyRepository } from './repository/tcpProxy.repo.js';
 import { TemplateRepository } from './repository/template.repo.js';
 import { VariableRepository } from './repository/variable.repo.js';
 import { VolumeRepository } from './repository/volume.repo.js';
+import { RailwayApiClient } from "@modelcontextprotocol/sdk/tools/railway.js";
+
+export const railwayClient = new RailwayApiClient({
+  getToken: () => process.env.RAILWAY_API_TOKEN ?? null,
+});
 
 export class RailwayApiClient extends BaseApiClient {
   public readonly deployments: DeploymentRepository;
