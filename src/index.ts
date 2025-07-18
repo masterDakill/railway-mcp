@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
-import express from "express";
-import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import express, { Request, Response } from "express";import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { railwayClient } from "@/api/api-client.js";
 import { registerAllTools } from "@/tools/index.js";
@@ -33,12 +32,16 @@ async function main() {
   );
 
   // 🟣 Railway-friendly HTTP server
-  const app = express();
-  const port = process.env.PORT || 8080;
-  app.get("/", (req, res) => res.send("✅ MCP server is running (Stdio only)"));
-  app.listen(port, () => {
-    console.log(`✅ HTTP server listening on port ${port}`);
-  });
+const app = express();
+const port = process.env.PORT || 8080;
+
+app.get("/", (req: Request, res: Response) => {
+  res.send("✅ MCP server is running (Stdio only)");
+});
+
+app.listen(port, () => {
+  console.log(`✅ HTTP server listening on port ${port}`);
+});
 }
 
 main().catch((error) => {
