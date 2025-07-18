@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
-import express, { Request, Response } from "express";import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
+import { StreamableHttpServerTransport } from "@modelcontextprotocol/sdk/server/http.js"; // 👈 Streamable HTTP ici
 import { railwayClient } from "@/api/api-client.js";
 import { registerAllTools } from "@/tools/index.js";
 
-// Get token from command line if provided
+// Token via CLI
 const cliToken = process.argv[2];
 if (cliToken) {
   process.env.RAILWAY_API_TOKEN = cliToken;
@@ -16,35 +16,23 @@ const server = new McpServer({
   version: "1.0.0",
 });
 
-// Register all tool modules
 registerAllTools(server);
 
-// Connect server to stdio transport
 async function main() {
   await railwayClient.initialize();
-  const transport = new StdioServerTransport();
+
+  const port = process.env.PORT || 8080;
+  const transport = new StreamableHttpServerTransport({ port }); // 👈 Streamable transport ici
   await server.connect(transport);
 
   const hasToken = railwayClient.getToken() !== null;
-  console.error(hasToken
-    ? "✅ Railway MCP server running with API token" + (cliToken ? " from command line" : " from environment")
-    : "⚠️ Railway MCP server running without API token - use 'configure' tool to set token"
+  console.log(hasToken
+    ? `✅ MCP HTTP server ready on port ${port} (token OK)`
+    : `⚠️ MCP HTTP server ready on port ${port} (no token)`
   );
-
-  // 🟣 Railway-friendly HTTP server
-const app = express();
-const port = process.env.PORT || 8080;
-
-app.get("/", (req: Request, res: Response) => {
-  res.send("✅ MCP server is running (Stdio only)");
-});
-
-app.listen(port, () => {
-  console.log(`✅ HTTP server listening on port ${port}`);
-});
 }
 
 main().catch((error) => {
-  console.error("❌ Fatal error in main():", error);
+  console.error("Fatal error in main():", error);
   process.exit(1);
 });
