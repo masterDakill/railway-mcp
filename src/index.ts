@@ -1,3 +1,4 @@
+// 📁 src/index.ts
 #!/usr/bin/env node
 
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
@@ -5,7 +6,7 @@ import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js"
 import { railwayClient } from "@/api/api-client.js";
 import { registerAllTools } from "@/tools/index.js";
 
-// Token via CLI
+// Get token from command line if provided
 const cliToken = process.argv[2];
 if (cliToken) {
   process.env.RAILWAY_API_TOKEN = cliToken;
@@ -20,13 +21,15 @@ registerAllTools(server);
 
 async function main() {
   await railwayClient.initialize();
-  const transport = new StdioServerTransport(); // STDIO (pas HTTP pour l’instant)
+
+  const transport = new StdioServerTransport();
   await server.connect(transport);
 
   const hasToken = railwayClient.getToken() !== null;
-  console.log(hasToken
-    ? `✅ MCP STDIO server ready (token OK)`
-    : `⚠️ MCP STDIO server ready (no token)`
+  console.log(
+    hasToken
+      ? `✅ MCP STDIO server ready (token OK)`
+      : `⚠️ MCP STDIO server ready (no token)`
   );
 }
 
