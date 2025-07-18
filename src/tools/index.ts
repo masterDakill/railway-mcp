@@ -11,10 +11,13 @@ import { configTools } from './config.tool.js';
 import { volumeTools } from './volume.tool.js';
 import { templateTools } from './template.tool.js';
 
-import { Tool } from '@/utils/tools.js';
+type Tool = Parameters<McpServer['tool']>;
 
+/**
+ * Enregistre tous les outils sur le serveur MCP.
+ * @param server Instance de McpServer
+ */
 export function registerAllTools(server: McpServer) {
-  // Collect all tools
   const allTools = [
     ...databaseTools,
     ...deploymentTools,
@@ -26,12 +29,13 @@ export function registerAllTools(server: McpServer) {
     ...configTools,
     ...volumeTools,
     ...templateTools,
-  ] as Tool[];
+  ];
 
-  // Register each tool with the server
-  allTools.forEach((tool) => {
-    server.tool(
-      ...tool
-    );
-  });
-} 
+  for (const tool of allTools) {
+    if (Array.isArray(tool)) {
+      server.tool(...tool as Tool);
+    } else {
+      console.warn('🟠 Outil ignoré : format incorrect', tool);
+    }
+  }
+}
